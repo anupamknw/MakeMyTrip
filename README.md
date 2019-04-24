@@ -11,6 +11,8 @@ It is a project created as a part of one of the selenium coding challenge.
 
 ## Run the Project
 
+Open Terminal/Command Prompt. Change the current working directory to your local project.
+
 Use the below command to run the project
 
 ```bash
