@@ -50,3 +50,6 @@ testng.iml
 z_build
 .kobalt
 .DS_Storee
+.DS_Store
+_classpath.xml
+_project.xml
