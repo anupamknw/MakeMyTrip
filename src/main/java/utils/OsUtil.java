@@ -1,6 +1,6 @@
 package utils;
 
-public class OsUtil {
+public class OSUtil {
 	private static String OS = null;
 
 	public static String getOsName() {

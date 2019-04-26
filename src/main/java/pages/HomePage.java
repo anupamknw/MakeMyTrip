@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import utils.CommonUtils;
 import utils.DateUtils;
 
 public class HomePage {
@@ -19,17 +22,20 @@ public class HomePage {
 	@FindBy(id = "fromCity")
 	private WebElement fromCity;
 
+	@FindBy(xpath = "//input[@placeholder='From']")
+	private WebElement fromInputBox;
+
+	@FindBy(xpath = "//input[@placeholder='To']")
+	private WebElement toTextBox;
+
 	@FindBy(id = "toCity")
 	private WebElement toCity;
 
-	@FindBy(id = "departure")
-	WebElement departureDate;
-
-	@FindBy(id = "return")
-	WebElement returnDate;
-
 	@FindBy(xpath = "//a[contains(@class,'primaryBtn font24 latoBlack widgetSearchBtn')]")
-	WebElement searchBtn;
+	private WebElement searchBtn;
+	
+	@FindBy(className="react-autosuggest__suggestions-list")
+	private List<WebElement> autosuggestionList;
 
 	WebDriver driver = null;
 
@@ -50,25 +56,15 @@ public class HomePage {
 
 	public void selectFrom(String from) {
 		fromCity.click();
-		driver.findElement(By.xpath("//input[@placeholder='From']")).sendKeys(from);
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//input[@placeholder='From']")).sendKeys(Keys.ARROW_DOWN, Keys.RETURN);
+		fromInputBox.sendKeys(from);
+		CommonUtils.waitForSeconds(3);
+		fromInputBox.sendKeys(Keys.ARROW_DOWN, Keys.RETURN);
 	}
 
 	public void selectTo(String to) {
-		driver.findElement(By.xpath("//input[@placeholder='To']")).sendKeys(to);
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		driver.findElement(By.xpath("//input[@placeholder='To']")).sendKeys(Keys.ARROW_DOWN, Keys.RETURN);
+		toTextBox.sendKeys(to);
+		CommonUtils.waitForSeconds(4);
+		toTextBox.sendKeys(Keys.ARROW_DOWN, Keys.RETURN);
 	}
 
 	public void selectDeparture() {
@@ -79,8 +75,7 @@ public class HomePage {
 		driver.findElement(By.xpath("//div[contains(@aria-label,'" + DateUtils.getDateAfter7Days() + "')]")).click();
 	}
 
-	public SearchResultPage clickOnSearchBtn() {
+	public void clickOnSearchBtn() {
 		searchBtn.click();
-		return new SearchResultPage(driver);
 	}
 }
