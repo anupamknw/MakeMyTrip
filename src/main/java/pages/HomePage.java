@@ -1,12 +1,5 @@
 package pages;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import utils.DateUtil;
+import utils.DateUtils;
 
 public class HomePage {
 	@FindBy(xpath = "//a[@href='//www.makemytrip.com/flights/']")
@@ -59,7 +52,7 @@ public class HomePage {
 		fromCity.click();
 		driver.findElement(By.xpath("//input[@placeholder='From']")).sendKeys(from);
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -79,11 +72,11 @@ public class HomePage {
 	}
 
 	public void selectDeparture() {
-        driver.findElement(By.xpath("//div[contains(@aria-label,'"+DateUtil.getTodayDate()+"')]")).click();
+		driver.findElement(By.xpath("//div[contains(@aria-label,'" + DateUtils.getTodayDate() + "')]")).click();
 	}
 
 	public void selectReturnDate() {
-		driver.findElement(By.xpath("//div[contains(@aria-label,'"+DateUtil.getDateAfter7Days()+"')]")).click();
+		driver.findElement(By.xpath("//div[contains(@aria-label,'" + DateUtils.getDateAfter7Days() + "')]")).click();
 	}
 
 	public SearchResultPage clickOnSearchBtn() {

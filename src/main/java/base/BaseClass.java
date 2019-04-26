@@ -4,7 +4,9 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import utils.OsUtil;
 
@@ -17,20 +19,23 @@ public class BaseClass {
 	public void setUp(final String BROWSER) {
 		if (BROWSER.contentEquals("firefox")) {
 			System.setProperty("webdriver.gecko.driver",
-					OsUtil.isMac() ? System.getProperty("user.dir") + "/src/main/resources/geckodriver" : System.getProperty("user.dir") + "");
-			
+					OsUtil.isMac() ? System.getProperty("user.dir") + "/src/main/resources/geckodriver"
+							: System.getProperty("user.dir") + "");
+
 			_driver = new FirefoxDriver();
 		} else if (BROWSER.contentEquals("chrome")) {
 			System.setProperty("webdriver.chrome.driver",
-					OsUtil.isMac() ? System.getProperty("user.dir") + "/src/main/resources/chromedriver" : System.getProperty("user.dir") + "");
-			
-			_driver = new ChromeDriver();
+					OsUtil.isMac() ? System.getProperty("user.dir") + "/src/main/resources/chromedriver"
+							: System.getProperty("user.dir") + "");
+			ChromeOptions options = new ChromeOptions();
+			options.addArguments("--incognito");
+			_driver = new ChromeDriver(options);
 		} else {
 			System.err.println("Invalid browser");
 			System.exit(0);
 		}
 		_driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		_driver.manage().window().maximize();		
+		_driver.manage().window().maximize();
 	}
 
 	public static String getUrl() {
