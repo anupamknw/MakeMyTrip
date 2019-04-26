@@ -11,7 +11,11 @@ import org.openqa.selenium.support.PageFactory;
 
 import utils.CommonUtils;
 import utils.DateUtils;
-
+/**
+ * This class represent 
+ * @author in-anupamp
+ *
+ */
 public class HomePage {
 	@FindBy(xpath = "//a[@href='//www.makemytrip.com/flights/']")
 	private WebElement flightLink;

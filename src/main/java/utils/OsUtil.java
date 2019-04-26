@@ -1,5 +1,10 @@
 package utils;
 
+/**
+ * This class is used to write OS related utility functions
+ * @author in-anupamp
+ *
+ */
 public class OSUtil {
 	private static String OS = null;
 

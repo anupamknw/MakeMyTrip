@@ -2,7 +2,11 @@ package utils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
+/**
+ * This class is used to write date time utility functions
+ * @author in-anupamp
+ *
+ */
 public class DateUtils {
 	static LocalDateTime now = LocalDateTime.now();
 	static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");

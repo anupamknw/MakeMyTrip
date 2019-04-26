@@ -4,12 +4,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-
+/**
+ * This class is used to write common utility functions
+ * @author in-anupamp
+ *
+ */
 public class CommonUtils {
 	public static void deleteAllCookie(WebDriver driver) {
 		driver.manage().deleteAllCookies();
 	}
 
+	/*
+	 * This is mthod to scroll till end on search result page
+	 */
 	public static void scrollTillEnd(WebDriver driver) {
 		int currentCount = 1;
 		int prevCount = 0;
